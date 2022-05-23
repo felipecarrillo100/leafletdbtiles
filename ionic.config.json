@@ -1,0 +1,7 @@
+{
+  "name": "leafletdbtiles",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
