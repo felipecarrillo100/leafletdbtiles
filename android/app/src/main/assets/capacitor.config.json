@@ -1,0 +1,6 @@
+{
+	"appId": "com.felipecarrillo100.leafletdbtiles",
+	"appName": "leafletdbtiles",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

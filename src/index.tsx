@@ -4,6 +4,9 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+window.history.pushState({}, '', "/");
+if (window.location.pathname !== "/") window.location.href = "/";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
