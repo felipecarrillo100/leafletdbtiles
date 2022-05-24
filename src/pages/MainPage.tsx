@@ -2,10 +2,13 @@ import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, Io
 import './Page.css';
 import LeafletMap from "../components/LeafletMap";
 import {ApplicationCommandsTypes} from "../commands/ApplicationCommandsTypes";
+import * as L from "leaflet";
+import LayerManager from "../leaflet/control/LayerManager";
 
 
 interface Props {
     command: ApplicationCommandsTypes | null;
+    onLayerChange?: (map: LayerManager)=> void;
 }
 
 const MainPage: React.FC<Props> = (props: Props) => {
@@ -29,7 +32,7 @@ const MainPage: React.FC<Props> = (props: Props) => {
             <IonTitle size="large">{pageName}</IonTitle>
           </IonToolbar>
         </IonHeader>
-         <LeafletMap id="leaflet-map-id" command={props.command}/>
+         <LeafletMap id="leaflet-map-id" command={props.command} onLayerChange={props.onLayerChange}/>
       </IonContent>
     </IonPage>
   );

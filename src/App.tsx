@@ -28,6 +28,9 @@ import SqLiteDatabase from "./database/SqLiteDatabase";
 import {ApplicationCommands} from "./commands/ApplicationCommands";
 import {ApplicationCommandsTypes} from "./commands/ApplicationCommandsTypes";
 import {useState} from "react";
+import * as L from "leaflet";
+import LayerControlPage from "./pages/LayerControlPage";
+import LayerManager from "./leaflet/control/LayerManager";
 
 setupIonicReact();
 
@@ -35,6 +38,7 @@ SqLiteDatabase.connect();
 
 const App: React.FC = () => {
   const [command, setCommand] = useState(null as ApplicationCommandsTypes | null);
+  const [layerManager, setLayermanager] = useState(null as LayerManager | null);
 
   const submitCommand = (command: ApplicationCommandsTypes) => {
     setCommand(command);
@@ -50,13 +54,16 @@ const App: React.FC = () => {
               <Redirect to="/page/Main" />
             </Route>
             <Route path="/page/Main" exact={true}>
-              <MainPage command={command}/>
+              <MainPage command={command} onLayerChange={setLayermanager}/>
             </Route>
             <Route path="/page/Save" exact={true}>
               <SavePage />
             </Route>
             <Route path="/page/Restore" exact={true}>
               <RestorePage submitCommand={submitCommand} />
+            </Route>
+            <Route path="/page/Layers" exact={true}>
+              <LayerControlPage submitCommand={submitCommand} layerManager={layerManager}/>
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>
